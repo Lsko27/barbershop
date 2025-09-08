@@ -16,7 +16,8 @@ export const CreateBooking = async (params: CrateBookingParams) => {
     throw new Error("Usuário não autenticado")
   }
   await db.booking.create({
-    data: {...params, userId: (user.user as any).id},
+    data: { ...params, userId: (user.user as any).id },
   })
   revalidatePath("/barbershops/[id]")
+  revalidatePath("/bookings")
 }
